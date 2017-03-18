@@ -43,7 +43,7 @@ class LinkedList
             current_node = current_node.next_node
         end
         fullList += " ==> #{current_node.value.to_s} ==> nil"
-        return fullList
+        puts fullList
     end
 
 
@@ -55,47 +55,42 @@ class LinkedList
     def deleteValue(value_to_delete)
         # auto-stop if list is empty
         if @size == 0
+            puts "no nodes to delete"
             return displayNodes
         end
 
-        if @head.value == value_to_delete
-            @head = nil
-            @size -= 1
-        else
-            
-            end
-            return displayNodes
-        end
+        current_node = @head
 
         # go to node with value_to_delete
-        previous_node = @head
-        current_node = previous_node.next
-        @size.times do |node|
-            current_node = previous_node.next_node
-            if current_node.value == value_to_delete
-                previous_node.next_node = current_node.next_node
-                @size -=1
-            end
-        end
-
-        while current_node.value != value_to_delete && current_node.next_node != nil
+        while current_node.value != value_to_delete
+            previous_node = current_node
             current_node = current_node.next_node
+            if current_node == nil
+                puts "couldn't find #{value_to_delete}"
+                exit
+            end
+
         end
-        if current_node.value == value_to_delete
+        if @size == 1
+            @head = nil
+            @size = 0
+        else
+            previous_node.next_node = current_node.next_node
             @size -= 1
-            # previous_node.next_node = current_node.next_node
         end
+        puts "deleted #{value_to_delete}"
         return displayNodes
     end
+
+
+
 end
 
 ll = LinkedList.new()
 ll.addNode(1)
-puts ll.deleteValue(5)
-
-# puts ll.addNode(2)
-# puts ll.addNode(3)
-# puts ll.deleteValue(3)
+# ll.addNode(2)
+# ll.addNode(3)
+# ll.deleteValue(3)
 
 # puts ll.displayNodes
 # ll.emptyList

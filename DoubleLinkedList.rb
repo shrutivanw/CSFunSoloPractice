@@ -28,14 +28,14 @@ class DoubleLinkedList
             current_node.next_node = Node.new(value, current_node, nil)
             @size += 1
         end
-        puts self.displayNodes
+        return displayNodes
     end
 
     def displayNodes
         if @size == 0
             return "head: --> nil"
         end
-        
+
         fullList = "nil <== head: ( #{@head.value.to_s} )"
         current_node = @head.next_node
         while current_node != nil
@@ -43,20 +43,52 @@ class DoubleLinkedList
             current_node = current_node.next_node
         end
         fullList += " ==> nil"
-        return fullList
+        puts fullList
     end
 
     def emptyList
         initialize
     end
 
+    def addNodeToBeginning(value)
+        return addNode(value) if size == 0
+        the_next_node = @head
+        @head = Node.new(value, nil, the_next_node)
+        the_next_node.previous_node = @head
+        @size += 1
+        return displayNodes
+    end
+
+    def removeNodeFromBeginning
+        return if @size == 0
+        if @size == 1
+            @head = nil
+            @size -= 1
+        else
+            new_head = @head.next_node
+            new_head.previous_node = nil
+            @head.next_node = nil
+            @head = new_head
+        end
+        return displayNodes
+    end
+
+    def addNodeAtSecondPosition(value)
+        return if @size == 0
+        new_third = @head.next_node
+        @head.next_node = Node.new(value, @head, new_third)
+        return displayNodes
+    end
 end
 
 dll = DoubleLinkedList.new()
-puts dll.displayNodes
+# puts dll.displayNodes
 dll.addNode(1)
-dll.addNode(2)
-dll.addNode(3)
-dll.emptyList
-dll.displayNodes
+# dll.addNode(2)
+# dll.addNode(3)
+# dll.addNodeToBeginning(0.5)
+dll.addNodeAtSecondPosition(1.5)
+# dll.emptyList
+# dll.removeNodeFromBeginning
+# dll.displayNodes
 # puts dll.displayNodes()
