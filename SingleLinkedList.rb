@@ -102,7 +102,18 @@ class LinkedList
         return displayNodes
     end
 
-
+    def printLargestValue
+        return displayNodes if @size == 0
+        current_node = @head
+        current_max = current_node.value
+        until current_node == nil
+            if current_max < current_node.value
+                current_max = current_node.value
+            end
+            current_node = current_node.next_node
+        end
+        puts "The largest value is #{current_max.to_s}."
+    end
 end
 
 ll = LinkedList.new()
@@ -110,8 +121,9 @@ ll.addNode(1)
 ll.addNode(2)
 ll.addNode(3)
 ll.insertValueIntoSorted(2.5)
-# ll.deleteValue(3)
+ll.deleteValue(3)
 
+ll.printLargestValue
 # puts ll.displayNodes
 # ll.emptyList
 # puts ll.displayNodes()
