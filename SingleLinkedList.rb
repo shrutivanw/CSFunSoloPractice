@@ -15,11 +15,15 @@ class LinkedList
         @size = 0
     end
 
+    def makeNewNode(value)
+        @head = Node.new(value, nil)
+        @size += 1
+    end
+
 
     def addNode(value)
         if @size == 0
-            @head = Node.new(value, nil)
-            @size += 1
+            makeNewNode(value)
         else
             current_node = @head
             while current_node.next_node != nil
@@ -82,14 +86,30 @@ class LinkedList
         return displayNodes
     end
 
+    def insertValueIntoSorted(value)
+        if @size == 0
+            makeNewNode(value)
+        else
+            current_node = @head
+            while current_node != nil && value > current_node.value
+                previous_node = current_node
+                current_node = current_node.next_node
+            end
+            new_node = Node.new(value, current_node)
+            previous_node.next_node = new_node
+            @size += 1
+        end
+        return displayNodes
+    end
 
 
 end
 
 ll = LinkedList.new()
 ll.addNode(1)
-# ll.addNode(2)
-# ll.addNode(3)
+ll.addNode(2)
+ll.addNode(3)
+ll.insertValueIntoSorted(2.5)
 # ll.deleteValue(3)
 
 # puts ll.displayNodes
