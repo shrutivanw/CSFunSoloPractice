@@ -36,7 +36,7 @@ class LinkedList
     end
 
 
-    def displayNodes
+    def displayNodes # THIS WAS #13
         if @size == 0
             return "head: nil"
         end
@@ -51,12 +51,12 @@ class LinkedList
     end
 
 
-    def emptyList
+    def emptyList # THIS WAS #5
         initialize
     end
 
 
-    def deleteValue(value_to_delete)
+    def deleteValue(value_to_delete) # THIS WAS #9
         # auto-stop if list is empty
         if @size == 0
             puts "no nodes to delete"
@@ -86,7 +86,7 @@ class LinkedList
         return displayNodes
     end
 
-    def insertValueIntoSorted(value)
+    def insertValueIntoSorted(value) # THIS WAS #7
         if @size == 0
             makeNewNode(value)
         else
@@ -102,7 +102,7 @@ class LinkedList
         return displayNodes
     end
 
-    def printLargestValue
+    def printLargestValue # THIS WAS #11
         return displayNodes if @size == 0
         current_node = @head
         current_max = current_node.value

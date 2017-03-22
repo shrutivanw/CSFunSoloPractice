@@ -50,7 +50,7 @@ class DoubleLinkedList
         initialize
     end
 
-    def addNodeToBeginning(value)
+    def addNodeToBeginning(value) # THIS WAS #1
         return addNode(value) if size == 0
         the_next_node = @head
         @head = Node.new(value, nil, the_next_node)
@@ -59,7 +59,7 @@ class DoubleLinkedList
         return displayNodes
     end
 
-    def removeNodeFromBeginning
+    def removeNodeFromBeginning # THIS WAS #2
         return if @size == 0
         if @size == 1
             @head = nil
@@ -73,7 +73,7 @@ class DoubleLinkedList
         return displayNodes
     end
 
-    def addNodeAtSecondPosition(value)
+    def addNodeAtSecondPosition(value) # THIS WAS #3
         return if @size == 0
         new_third = @head.next_node
         @head.next_node = Node.new(value, @head, new_third)

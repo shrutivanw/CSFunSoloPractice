@@ -5,9 +5,15 @@ class Arrays
     def initialize(size)
         @size = size
         @array = []
-        size.times do
+        makeNewElements
+        display
+    end
+
+    def makeNewElements
+        @size.times do
             @array.push(nil)
         end
+        @size += @size
         display
     end
 
@@ -20,7 +26,7 @@ class Arrays
         end
     end
 
-    def display
+    def display # THIS WAS #14
         arrayDisplay = "["
         (0...@size).each do |i|
             arrayDisplay += " #{@array[i].to_s},"
@@ -29,14 +35,14 @@ class Arrays
         puts arrayDisplay
     end
 
-    def empty
+    def empty # THIS WAS #6
         @size.times do |i|
             @array[i] = -1
         end
         display
     end
 
-    def addElementIntoSorted(element_to_add)
+    def addElementIntoSorted(element_to_add) # THIS WAS #8
         (0...@size).each do |i|
             if @array[i] == nil || @array[i] > element_to_add
                 temp = @array[i]
