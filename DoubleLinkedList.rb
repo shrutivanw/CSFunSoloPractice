@@ -46,7 +46,7 @@ class DoubleLinkedList
         puts fullList
     end
 
-    def emptyList
+    def emptyList # I GUESS ALSO #5
         initialize
     end
 
