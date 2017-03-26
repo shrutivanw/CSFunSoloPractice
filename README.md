@@ -17,3 +17,4 @@ practice for problems in CS Fundamentals
 14. (done!) Print all integer data values in a native int array
 15. Explain: what is a memory leak?
 16. Explain: what is an access violation?
+17.
