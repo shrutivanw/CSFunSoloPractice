@@ -34,6 +34,20 @@ class LinkedList
         end
         return displayNodes
     end
+    
+    # Shruti's comment: use the method below as the default method to add a node to a singly linked list when no criteria is specified. 
+    # addNode above has a time complexity of O(n) since it needs to navigate through the singly linked list.
+    # prepend below has a time complexity of O(1), no matter how long the linked list is
+    def prepend(value) 
+        if @size == 0
+            makeNewNode(value)
+        else
+            current_node = Node.new(value,@head)
+            @head = current_node
+            @size += 1
+        end
+        return displayNodes
+    end
 
 
     def displayNodes # THIS WAS #13
@@ -55,7 +69,11 @@ class LinkedList
         initialize
     end
 
-
+    # Shruti: In deleteValue below, what happens in the case where the linked list has more than one node,
+    # but the value to delete is found in the first node (@head.value)?
+    # In other words, after the while loop in the method below,
+    # @size != nil, but previous_node is not set since the while loop was not entered.
+    # How will you modify this method to work for this case? e.g. Linked list: "head: 7 8 nil" deleteValue(7) is called.
     def deleteValue(value_to_delete) # THIS WAS #9
         # auto-stop if list is empty
         if @size == 0
@@ -73,8 +91,8 @@ class LinkedList
                 puts "couldn't find #{value_to_delete}"
                 exit
             end
-
         end
+        
         if @size == 1
             @head = nil
             @size = 0
@@ -86,6 +104,9 @@ class LinkedList
         return displayNodes
     end
 
+    # Shruti: Assume your linked list is "head: 7 8 nil" and insertValueIntoSorted(5) is called.
+    # In this case, with the code below, the while loop will never be entered, so previous_node is not set to a node.
+    # Also, in this example case, you will also need to update @head. What changes would you need to make to the code below?
     def insertValueIntoSorted(value) # THIS WAS #7
         if @size == 0
             makeNewNode(value)
