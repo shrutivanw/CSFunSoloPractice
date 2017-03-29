@@ -30,6 +30,13 @@ class DoubleLinkedList
         end
         return displayNodes
     end
+    
+    # Shruti: Similar to the comment for singly linked list, it is more efficient to 
+    # prepend to the beginning of a linked list (with O(1) time complexity) as compared
+    # to addNode method above (with O(n) time complexity) which adds to the end. Unless
+    # of course, adding to the end is stated as the requirement for the problem.
+    # If asked, without criteria, make addNodeToBeginning your default method for adding
+    # a node to a linked list.
 
     def displayNodes
         if @size == 0
@@ -51,7 +58,7 @@ class DoubleLinkedList
     end
 
     def addNodeToBeginning(value) # THIS WAS #1
-        return addNode(value) if size == 0
+        return addNode(value) if size == 0 # Shruti: you need to also make size = 1 before returning here.
         the_next_node = @head
         @head = Node.new(value, nil, the_next_node)
         the_next_node.previous_node = @head
@@ -67,16 +74,22 @@ class DoubleLinkedList
         else
             new_head = @head.next_node
             new_head.previous_node = nil
-            @head.next_node = nil
+            @head.next_node = nil 
             @head = new_head
         end
         return displayNodes
     end
 
+    #Shruti: Unlike removeNodeFromBeginning, #4 which is removing the second Node in the linked list, will not have a new, updated head.
+    # Instead, you are looking to remove @head.nextNode. e.g. if the doubly linked list is nil <==> 7 <==> 8 <==> 9 <==> nil,
+    # in this example, #2, which you solved above, removes the node with value 7.
+    # #4 is asking you to remove the node with value 8.
+    
     def addNodeAtSecondPosition(value) # THIS WAS #3
         return if @size == 0
         new_third = @head.next_node
         @head.next_node = Node.new(value, @head, new_third)
+        #Shruti: You missed updating new_third.previous_node to be the newly added node, @head.next_node
         return displayNodes
     end
 end
